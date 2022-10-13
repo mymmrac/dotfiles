@@ -1,0 +1,14 @@
+#!/usr/bin/fish
+
+set -l bwEmail "mymmrac@gmail.com"
+
+if bw login $bwEmail --check
+	if not bw unlock --check
+		set -Ux BW_SESSION $(bw unlock --raw)
+	end
+else
+	set -Ux BW_SESSION $(bw login $bwEmail --raw)
+end
+
+bw sync
+

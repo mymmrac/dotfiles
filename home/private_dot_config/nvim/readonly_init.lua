@@ -83,65 +83,6 @@ map("n", "<leader>h", "<CMD>nohlsearch<CR>")
 -- New file
 map("n", "<leader>fn", "<CMD>DashboardNewFile<CR>")
 
--- Dashboard config
-local db = require("dashboard")
-
-db.hide_statusline = true
-db.hide_tabline = true
-
-db.custom_header = {
-	"",
-	"",
-	" ███╗   ██╗ ███████╗ ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗",
-	" ████╗  ██║ ██╔════╝██╔═══██╗ ██║   ██║ ██║ ████╗ ████║",
-	" ██╔██╗ ██║ █████╗  ██║   ██║ ██║   ██║ ██║ ██╔████╔██║",
-	" ██║╚██╗██║ ██╔══╝  ██║   ██║ ╚██╗ ██╔╝ ██║ ██║╚██╔╝██║",
-	" ██║ ╚████║ ███████╗╚██████╔╝  ╚████╔╝  ██║ ██║ ╚═╝ ██║",
-	" ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝",
-	"",
-	" [ TIP: To exit Neovim, just power off your computer. ] ",
-	"",
-}
-
-db.custom_center = {
-	{
-		icon = "  ",
-		desc = "New file                                ",
-		action = "DashboardNewFile",
-		shortcut = "spc f n",
-	},
-	{
-		icon = "  ",
-		desc = "Find recent files                       ",
-		action = "Telescope oldfiles",
-		shortcut = "spc f r",
-	},
-	{
-		icon = "  ",
-		desc = "Find files                              ",
-		action = "Telescope find_files find_command=rg,--hidden,--files",
-		shortcut = "spc f f",
-	},
-	{
-		icon = "  ",
-		desc = "File browser                            ",
-		action = "Telescope file_browser",
-		shortcut = "spc f b",
-	},
-	{
-		icon = "﬍  ",
-		desc = "Find word                               ",
-		action = "Telescope live_grep",
-		shortcut = "spc f w",
-	},
-}
-
-db.custom_footer = {
-	"",
-	"Hmmm, something goes here...",
-	"",
-}
-
 -- Plugins
 -- TODO: Move all non `use` directives out of Packer config
 require("packer").startup(function(use)
@@ -154,61 +95,27 @@ require("packer").startup(function(use)
 		requires = { {"nvim-lua/plenary.nvim"} }
 	}
 	use "nvim-telescope/telescope-file-browser.nvim"
-	require("telescope").load_extension "file_browser"
-	require("telescope").setup({
-		defaults = {
-			prompt_prefix = " ",
-			selection_caret = "❯ ",
-			path_display = { "truncate" },
-			selection_strategy = "reset",
-			sorting_strategy = "ascending",
-			layout_strategy = "horizontal",
-			layout_config = {
-				prompt_position = "top",
-			},
-		},
-	})
 
 	-- Smoth scroll
 	use "karb94/neoscroll.nvim"
-	require("neoscroll").setup()
 
 	-- Dev icons
 	use "kyazdani42/nvim-web-devicons"
-	require("nvim-web-devicons").setup({
-		default = true,
-	})
 
 	-- Dashboard
 	use "glepnir/dashboard-nvim"
 
 	-- Treesitter
 	use "nvim-treesitter/nvim-treesitter"
-	require("nvim-treesitter.configs").setup({
-		ensure_installed = { "lua", "go", "gomod", "bash", "nix", "markdown", "python" },
-
-		highlight = {
-			enable = true,
-		},
-	})
 
 	-- Auto pairs
 	use "windwp/nvim-autopairs"
-	require("nvim-autopairs").setup({
-		check_ts = true,
-	})
 
 	-- Status line
 	use {
 		"nvim-lualine/lualine.nvim",
 		requires = { "kyazdani42/nvim-web-devicons", opt = true }
 	}
-	require("lualine").setup({
-		options = {
-			-- theme = "onedark",
-			theme = "catppuccin",
-		},
-	})
 
 	-- One Dark theme
 	-- use "navarasu/onedark.nvim"
@@ -219,15 +126,6 @@ require("packer").startup(function(use)
 
 	-- Catppuccin theme
 	use { "catppuccin/nvim", as = "catppuccin" }
-	require("catppuccin").setup({
-		integrations = {
-			telescope = true,
-			treesitter = true,
-			dashboard = true,
-		},
-	})
-	g.catppuccin_flavour = "mocha"
-	vim.cmd [[colorscheme catppuccin]]
 
 	-- LSP
 	use "neovim/nvim-lspconfig"
@@ -244,6 +142,57 @@ require("packer").startup(function(use)
 	use "saadparwaiz1/cmp_luasnip"
 	use "L3MON4D3/LuaSnip"
 end)
+
+
+require("telescope").load_extension "file_browser"
+require("telescope").setup({
+	defaults = {
+		prompt_prefix = " ",
+		selection_caret = "❯ ",
+		path_display = { "truncate" },
+		selection_strategy = "reset",
+		sorting_strategy = "ascending",
+		layout_strategy = "horizontal",
+		layout_config = {
+			prompt_position = "top",
+		},
+	},
+})
+
+require("neoscroll").setup()
+
+require("nvim-web-devicons").setup({
+	default = true,
+})
+
+require("nvim-treesitter.configs").setup({
+	ensure_installed = { "lua", "go", "gomod", "bash", "nix", "markdown", "python" },
+
+	highlight = {
+		enable = true,
+	},
+})
+
+require("nvim-autopairs").setup({
+	check_ts = true,
+})
+
+require("lualine").setup({
+	options = {
+		-- theme = "onedark",
+		theme = "catppuccin",
+	},
+})
+
+require("catppuccin").setup({
+	integrations = {
+		telescope = true,
+		treesitter = true,
+		dashboard = true,
+	},
+})
+g.catppuccin_flavour = "mocha"
+vim.cmd [[colorscheme catppuccin]]
 
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -323,5 +272,64 @@ cmp.setup {
     { name = "nvim_lsp" },
     { name = "luasnip" },
   },
+}
+
+-- Dashboard config
+local db = require("dashboard")
+
+db.hide_statusline = true
+db.hide_tabline = true
+
+db.custom_header = {
+	"",
+	"",
+	" ███╗   ██╗ ███████╗ ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗",
+	" ████╗  ██║ ██╔════╝██╔═══██╗ ██║   ██║ ██║ ████╗ ████║",
+	" ██╔██╗ ██║ █████╗  ██║   ██║ ██║   ██║ ██║ ██╔████╔██║",
+	" ██║╚██╗██║ ██╔══╝  ██║   ██║ ╚██╗ ██╔╝ ██║ ██║╚██╔╝██║",
+	" ██║ ╚████║ ███████╗╚██████╔╝  ╚████╔╝  ██║ ██║ ╚═╝ ██║",
+	" ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝",
+	"",
+	" [ TIP: To exit Neovim, just power off your computer. ] ",
+	"",
+}
+
+db.custom_center = {
+	{
+		icon = "  ",
+		desc = "New file                                ",
+		action = "DashboardNewFile",
+		shortcut = "spc f n",
+	},
+	{
+		icon = "  ",
+		desc = "Find recent files                       ",
+		action = "Telescope oldfiles",
+		shortcut = "spc f r",
+	},
+	{
+		icon = "  ",
+		desc = "Find files                              ",
+		action = "Telescope find_files find_command=rg,--hidden,--files",
+		shortcut = "spc f f",
+	},
+	{
+		icon = "  ",
+		desc = "File browser                            ",
+		action = "Telescope file_browser",
+		shortcut = "spc f b",
+	},
+	{
+		icon = "﬍  ",
+		desc = "Find word                               ",
+		action = "Telescope live_grep",
+		shortcut = "spc f w",
+	},
+}
+
+db.custom_footer = {
+	"",
+	"Hmmm, something goes here...",
+	"",
 }
 
