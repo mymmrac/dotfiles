@@ -1,0 +1,18 @@
+{{ $email := promptStringOnce . "email" "Email" -}}
+
+{{- $osID := .chezmoi.os -}}
+{{- if hasKey .chezmoi.osRelease "id" -}}
+{{-   $osID = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
+{{- end -}}
+
+[data]
+	email = {{ $email | quote }}
+	osID = {{ $osID | quote }}
+
+[edit]
+	command = "nvim"
+
+[merge]
+	command = "nvim"
+	args = ["-d", "{{ .Destination }}", "{{ .Source }}", "{{ .Target }}"]
+

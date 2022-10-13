@@ -1,0 +1,6 @@
+set icons
+set scrolloff 4
+set drawbox
+
+map e $nvim "$f"
+

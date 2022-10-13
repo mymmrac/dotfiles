@@ -1,0 +1,52 @@
+# Configs
+
+{{- $shortTerm := "168h" -}}
+{{- $longTerm  := "672h" -}}
+
+# Catppuccin Theme
+
+[".config/alacritty/catppuccin/catppuccin-mocha.yml"]
+	type = "file"
+	refreshPeriod = "{{ $longTerm }}"
+	url = "https://raw.githubusercontent.com/catppuccin/alacritty/main/catppuccin-mocha.yml"
+
+[".config/bat/themes/Catppuccin-mocha.tmTheme"]
+	type = "file"
+	refreshPeriod = "{{ $longTerm }}"
+	url = "https://raw.githubusercontent.com/catppuccin/bat/main/Catppuccin-mocha.tmTheme"
+
+[".config/btop/themes/catppuccin_mocha.theme"]
+	type = "file"
+	refreshPeriod = "{{ $longTerm }}"
+	url = "https://raw.githubusercontent.com/catppuccin/btop/main/catppuccin_mocha.theme"
+
+# NeoVim Packer
+
+[".local/share/nvim/site/pack/packer/start/packer.nvim"]
+	type = "archive"
+	refreshPeriod = "{{ $shortTerm }}"
+	stripComponents = 1
+	url = "https://github.com/wbthomason/packer.nvim/archive/master.tar.gz"
+
+# Tmux TPM
+
+[".config/tmux/plugins/tpm"]
+	type = "archive"
+	refreshPeriod = "{{ $shortTerm }}"
+	stripComponents = 1
+	url = "https://github.com/tmux-plugins/tpm/archive/master.tar.gz"
+
+# Nerd Fonts
+
+{{- $fontDir := ".local/share/fonts" }}
+
+["{{ $fontDir }}/JetBrains Mono Regular Nerd Font Complete Mono.ttf"]
+	type = "file"
+	refreshPeriod = "{{ $longTerm }}"
+	url = "https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/JetBrainsMono/Ligatures/Regular/complete/JetBrains%20Mono%20Regular%20Nerd%20Font%20Complete%20Mono.ttf"
+
+["{{ $fontDir }}/JetBrains Mono Regular Nerd Font Complete.ttf"]
+	type = "file"
+	refreshPeriod = "{{ $longTerm }}"
+	url = "https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/JetBrainsMono/Ligatures/Regular/complete/JetBrains%20Mono%20Regular%20Nerd%20Font%20Complete.ttf"
+
