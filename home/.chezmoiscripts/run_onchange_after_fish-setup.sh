@@ -11,13 +11,14 @@ chezmoi completion fish --output=~/.config/fish/completions/chezmoi.fish
 fish_update_completions
 
 mkdir -p ~/.go
-set -U GOPATH ~/.go
-
-set -U EDITOR nvim
+set -Ux GOPATH ~/.go
+set -Ux EDITOR nvim
 
 fish_add_path -U ~/.local/bin
 fish_add_path -U ~/.go/bin
 fish_add_path -U ~/.cargo/bin
+
+tmux source ~/.config/tmux/tmux.conf
 
 echo -e "\n==== End: Fish Setup ==="
 
