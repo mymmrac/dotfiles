@@ -1,4 +1,4 @@
-{{ if eq .osID "linux-debian" "linux-ubuntu" "linux-pop"  -}}
+{{ if eq .osID "linux-ubuntu" "linux-pop"  -}}
 
 {{ $packagesAPT := list
 	"jq"
@@ -54,6 +54,8 @@ sudo apt upgrade -y
 
 sudo apt install -y {{ $packagesAPT | join " " }}
 
+sudo ln -s /usr/bin/batcat /usr/bin/bat
+
 cargo install --locked {{ $packagesCargo | join " " }}
 
 {{ range $package := $packagesGo -}}
@@ -64,6 +66,8 @@ env CGO_ENABLED=0 go install -ldflags="-s -w" github.com/gokcehan/lf@latest
 
 sudo npm install --global yarn
 sudo yarn global add {{ $packagesYarn | join " " }}
+
+bw sync
 
 echo -e "\n==== End: Install Packages ===="
 

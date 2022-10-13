@@ -1,4 +1,5 @@
 {{ $email := promptStringOnce . "email" "Email" -}}
+{{ $isWork := promptBoolOnce . "isWork" "Is work PC" -}}
 
 {{- $osID := .chezmoi.os -}}
 {{- if hasKey .chezmoi.osRelease "id" -}}
@@ -7,6 +8,7 @@
 
 [data]
 	email = {{ $email | quote }}
+	isWork = {{ $isWork }}
 	osID = {{ $osID | quote }}
 
 [edit]

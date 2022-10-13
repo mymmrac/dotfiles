@@ -1,1 +1,5 @@
-{{- (bitwardenFields "item" "SSH").public.value }}
+{{- if .isWork -}}
+  {{- (bitwardenFields "item" "SSH Work").public.value }}
+{{- else -}}
+  {{- (bitwardenFields "item" "SSH").public.value }}
+{{- end -}}
