@@ -1,6 +1,5 @@
 {{- if .isWork -}}
   {{- (bitwardenFields "item" "SSH Work").private.value | replace "|" "\n" }}
-{{- else -}}
+{{- else }}
   {{- (bitwardenFields "item" "SSH").private.value | replace "|" "\n" }}
-{{- end -}}
-
+{{- end }}
