@@ -1,5 +1,5 @@
 {{- if .isWork -}}
   {{- (bitwardenFields "item" "SSH Work").public.value }}
 {{- else -}}
-  {{- (bitwardenFields "item" "SSH").public.value }}
+  {{- (bitwardenFields "item" "SSH Home").public.value }}
 {{- end -}}

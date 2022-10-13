@@ -1,6 +1,6 @@
 # :deciduous_tree: Dotfiles
 
-Managed using [chezmoi](https://www.chezmoi.io)
+Managed using [chezmoi](https://www.chezmoi.io).
 
 ## :gear: Install
 
