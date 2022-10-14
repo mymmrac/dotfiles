@@ -37,6 +37,7 @@
 	url = "https://github.com/tmux-plugins/tpm/archive/master.tar.gz"
 
 # Taskfile completions
+
 [".config/fish/completions/task.fish"]
 	type = "file"
 	refreshPeriod = "{{ $longTerm }}"
