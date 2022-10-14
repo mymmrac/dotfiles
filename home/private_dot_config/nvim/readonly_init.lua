@@ -166,7 +166,7 @@ require("nvim-web-devicons").setup({
 })
 
 require("nvim-treesitter.configs").setup({
-	ensure_installed = { "lua", "go", "gomod", "bash", "nix", "markdown", "python" },
+	ensure_installed = { "lua", "go", "gomod", "bash", "fish", "nix", "markdown", "python" },
 
 	highlight = {
 		enable = true,
