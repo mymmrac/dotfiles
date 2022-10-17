@@ -41,8 +41,7 @@
 [".config/fish/completions/task.fish"]
 	type = "file"
 	refreshPeriod = "{{ $longTerm }}"
-	# TODO: Use file from https://github.com/go-task/task
-	url = "https://raw.githubusercontent.com/mymmrac/task/improve-fish-completion/completion/fish/task.fish"
+	url = "https://raw.githubusercontent.com/go-task/task/master/completion/fish/task.fish"
 
 # Nerd Fonts
 
