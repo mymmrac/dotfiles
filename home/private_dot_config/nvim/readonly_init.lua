@@ -83,8 +83,19 @@ map("n", "<leader>h", "<CMD>nohlsearch<CR>")
 -- New file
 map("n", "<leader>fn", "<CMD>DashboardNewFile<CR>")
 
+-- Move to previous/next buffer
+map("n", "<A-,>", "<Cmd>BufferPrevious<CR>")
+map("n", "<A-.>", "<Cmd>BufferNext<CR>")
+
+-- Goto buffer in position...
+for i = 1, 9 do
+	map("n", "<A-"..i..">", "<Cmd>BufferGoto "..i.."<CR>")
+end
+
+-- Close buffer
+map("n", "<A-c>", "<Cmd>BufferClose<CR>")
+
 -- Plugins
--- TODO: Move all non `use` directives out of Packer config
 require("packer").startup(function(use)
 	-- Packer can manage itself
 	use "wbthomason/packer.nvim"
@@ -92,7 +103,7 @@ require("packer").startup(function(use)
 	-- Telescope and related plugins
 	use {
 		"nvim-telescope/telescope.nvim", tag = "0.1.0",
-		requires = { {"nvim-lua/plenary.nvim"} }
+		requires = {{ "nvim-lua/plenary.nvim" }}
 	}
 	use "nvim-telescope/telescope-file-browser.nvim"
 
@@ -141,6 +152,15 @@ require("packer").startup(function(use)
 	-- Snippets
 	use "saadparwaiz1/cmp_luasnip"
 	use "L3MON4D3/LuaSnip"
+
+	-- Comments
+	use "numToStr/Comment.nvim"
+
+	-- Tabs
+	use {
+		"romgrk/barbar.nvim",
+		requires = { "kyazdani42/nvim-web-devicons" }
+	}
 end)
 
 
@@ -193,6 +213,10 @@ require("catppuccin").setup({
 })
 g.catppuccin_flavour = "mocha"
 vim.cmd [[colorscheme catppuccin]]
+
+require("Comment").setup()
+
+require("bufferline").setup()
 
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = vim.lsp.protocol.make_client_capabilities()
