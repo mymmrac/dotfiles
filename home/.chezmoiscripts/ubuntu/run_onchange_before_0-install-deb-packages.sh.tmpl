@@ -1,0 +1,45 @@
+{{ if eq .osID "linux-ubuntu" "linux-pop"  -}}
+
+{{ $packagesAPT := list
+	"jq"
+	"ripgrep"
+	"fd-find"
+	"bat"
+	"neovim"
+	"git"
+	"fish"
+	"lolcat"
+	"cmatrix"
+	"cowsay"
+	"xclip"
+	"nodejs"
+	"mpv"
+	"cloc"
+	"tmux"
+	"cmake"
+	"golang"
+	"speedtest-cli"
+-}}
+
+#!/bin/bash
+
+set -eu
+
+echo -e "==== Start: Install Deb Packages ====\n"
+
+curl -s https://deb.nodesource.com/setup_16.x | sudo bash
+sudo add-apt-repository -y ppa:longsleep/golang-backports
+sudo add-apt-repository -y ppa:neovim-ppa/stable
+sudo apt update -y
+sudo apt upgrade -y
+
+sudo apt install -y {{ $packagesAPT | join " " }}
+
+sudo apt autoremove -y
+
+sudo ln -fs /usr/bin/batcat /usr/bin/bat
+sudo ln -fs /usr/bin/fdfind /usr/bin/fd
+
+echo -e "\n==== End: Install Deb Packages ===="
+
+{{ end -}}

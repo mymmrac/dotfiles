@@ -1,0 +1,27 @@
+{{ if eq .osID "linux-ubuntu" "linux-pop"  -}}
+
+{{ $packagesGo := list
+	"github.com/go-task/task/v3/cmd/task@latest"
+	"github.com/charmbracelet/glow@latest"
+	"github.com/charmbracelet/gum@latest"
+	"github.com/jesseduffield/lazygit@latest"
+-}}
+
+#!/bin/bash
+
+set -eu
+
+echo -e "==== Start: Install Go Packages ====\n"
+
+mkdir -p "{{ .chezmoi.homeDir }}/.go"
+export GOPATH="{{ .chezmoi.homeDir }}/.go"
+
+{{ range $package := $packagesGo -}}
+	go install {{ $package }}
+{{ end -}}
+
+env CGO_ENABLED=0 go install -ldflags="-s -w" github.com/gokcehan/lf@latest
+
+echo -e "\n==== End: Install Go Packages ===="
+
+{{ end -}}

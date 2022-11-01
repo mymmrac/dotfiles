@@ -1,0 +1,20 @@
+{{ if eq .osID "linux-ubuntu" "linux-pop"  -}}
+
+{{ $packagesYarn := list
+	"@bitwarden/cli"
+	"sass"
+-}}
+
+#!/bin/bash
+
+set -eu
+
+echo -e "==== Start: Install Yarn Packages ====\n"
+
+sudo npm install --global yarn
+
+sudo yarn global add {{ $packagesYarn | join " " }}
+
+echo -e "\n==== End: Install Yarn Packages ===="
+
+{{ end -}}

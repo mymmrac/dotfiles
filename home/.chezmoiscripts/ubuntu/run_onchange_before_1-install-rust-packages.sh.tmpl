@@ -1,0 +1,22 @@
+{{ if eq .osID "linux-ubuntu" "linux-pop"  -}}
+
+{{ $packagesCargo := list
+	"starship"
+	"du-dust"
+	"exa"
+-}}
+
+#!/bin/bash
+
+set -eu
+
+echo -e "==== Start: Install Rust Packages ====\n"
+
+curl --proto '=https' --tlsv1.3 https://sh.rustup.rs -sSf | sh
+export PATH="$HOME/.cargo/bin:$PATH"
+
+cargo install --locked {{ $packagesCargo | join " " }}
+
+echo -e "\n==== End: Install Rust Packages ===="
+
+{{ end -}}
