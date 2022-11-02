@@ -13,6 +13,7 @@ set -eu
 echo -e "==== Start: Install Rust Packages ====\n"
 
 curl --proto '=https' --tlsv1.3 https://sh.rustup.rs -sSf | sh
+
 export PATH="$HOME/.cargo/bin:$PATH"
 
 cargo install --locked {{ $packagesCargo | join " " }}

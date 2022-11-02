@@ -62,6 +62,11 @@ A.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
+-- Spell check
+o.spell = true
+o.spelllang = "en_us,uk"
+A.nvim_set_hl(0, "SpellBad", { underdashed = true, sp = "#f38ba8" })
+
 -- Map <leader> to space
 g.mapleader = " "
 g.maplocalleader = " "
@@ -219,8 +224,7 @@ require("Comment").setup()
 require("bufferline").setup()
 
 -- Add additional capabilities supported by nvim-cmp
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 -- Setup nvim-lspconfig
 local lspconfig = require("lspconfig")
