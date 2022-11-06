@@ -73,7 +73,7 @@ g.maplocalleader = " "
 
 -- Set keybinding `k` for mode `m` and do `v`
 local function map(m, k, v)
-   vim.keymap.set(m, k, v, { silent = true })
+	vim.keymap.set(m, k, v, { silent = true })
 end
 
 -- Keybindings for telescope
@@ -94,7 +94,7 @@ map("n", "<A-.>", "<Cmd>BufferNext<CR>")
 
 -- Goto buffer in position...
 for i = 1, 9 do
-	map("n", "<A-"..i..">", "<Cmd>BufferGoto "..i.."<CR>")
+	map("n", "<A-" .. i .. ">", "<Cmd>BufferGoto " .. i .. "<CR>")
 end
 
 -- Close buffer
@@ -108,7 +108,7 @@ require("packer").startup(function(use)
 	-- Telescope and related plugins
 	use {
 		"nvim-telescope/telescope.nvim", tag = "0.1.0",
-		requires = {{ "nvim-lua/plenary.nvim" }}
+		requires = { { "nvim-lua/plenary.nvim" } }
 	}
 	use "nvim-telescope/telescope-file-browser.nvim"
 
@@ -166,6 +166,10 @@ require("packer").startup(function(use)
 		"romgrk/barbar.nvim",
 		requires = { "kyazdani42/nvim-web-devicons" }
 	}
+
+	-- LSP navigation
+	-- TODO: Remove manual configs & plugins (follow https://github.com/ray-x/navigator.lua#install)
+	use "ray-x/navigator.lua"
 end)
 
 
@@ -237,6 +241,7 @@ for _, lsp in ipairs(servers) do
 end
 
 require("go").setup()
+require("go.format").goimport()
 
 lspconfig["sumneko_lua"].setup {
 	capabilities = capabilities,
@@ -264,43 +269,46 @@ local luasnip = require "luasnip"
 -- Setup nvim-cmp
 local cmp = require "cmp"
 cmp.setup {
-  snippet = {
-    expand = function(args)
-      luasnip.lsp_expand(args.body)
-    end,
-  },
-  mapping = cmp.mapping.preset.insert({
-    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-    ["<C-f>"] = cmp.mapping.scroll_docs(4),
-    ["<C-Space>"] = cmp.mapping.complete(),
-    ["<CR>"] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
-    },
-    ["<Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      else
-        fallback()
-      end
-    end, { "i", "s" }),
-    ["<S-Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end, { "i", "s" }),
-  }),
-  sources = {
-    { name = "nvim_lsp" },
-    { name = "luasnip" },
-  },
+	snippet = {
+		expand = function(args)
+			luasnip.lsp_expand(args.body)
+		end,
+	},
+	mapping = cmp.mapping.preset.insert({
+		["<C-d>"] = cmp.mapping.scroll_docs(-4),
+		["<C-f>"] = cmp.mapping.scroll_docs(4),
+		["<C-Space>"] = cmp.mapping.complete(),
+		["<CR>"] = cmp.mapping.confirm {
+			behavior = cmp.ConfirmBehavior.Replace,
+			select = true,
+		},
+		["<Tab>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_next_item()
+			elseif luasnip.expand_or_jumpable() then
+				luasnip.expand_or_jump()
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
+		["<S-Tab>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_prev_item()
+			elseif luasnip.jumpable(-1) then
+				luasnip.jump(-1)
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
+	}),
+	sources = {
+		{ name = "nvim_lsp" },
+		{ name = "luasnip" },
+	},
 }
+
+-- LSP navigation
+require("navigator").setup()
 
 -- Dashboard config
 local db = require("dashboard")
@@ -360,4 +368,3 @@ db.custom_footer = {
 	"Hmmm, something goes here...",
 	"",
 }
-

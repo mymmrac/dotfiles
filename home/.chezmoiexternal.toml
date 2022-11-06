@@ -20,6 +20,19 @@
 	refreshPeriod = "{{ $longTerm }}"
 	url = "https://raw.githubusercontent.com/catppuccin/btop/main/catppuccin_mocha.theme"
 
+[".icons/Catppuccin-Mocha-Dark-Cursors"]
+	type = "archive"
+	refreshPeriod = "{{ $longTerm }}"
+	stripComponents = 1
+	url = "https://raw.githubusercontent.com/catppuccin/cursors/main/cursors/Catppuccin-Mocha-Dark-Cursors.zip"
+
+# TODO: Check why does not work
+# [".themes/Catppuccin-Mocha-Green"]
+# 	type = "archive"
+# 	refreshPeriod = "{{ $longTerm }}"
+# 	stripComponents = 1
+# 	url = "https://raw.githubusercontent.com/catppuccin/gtk/main/Releases/Catppuccin-Mocha-Green.zip"
+
 # NeoVim Packer
 
 [".local/share/nvim/site/pack/packer/start/packer.nvim"]
