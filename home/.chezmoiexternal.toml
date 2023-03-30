@@ -60,13 +60,12 @@
 
 {{- $fontDir := ".local/share/fonts" }}
 
-["{{ $fontDir }}/JetBrains Mono Regular Nerd Font Complete Mono.ttf"]
+["{{ $fontDir }}/JetBrains Mono Nerd Font Complete Mono Regular.ttf"]
 	type = "file"
 	refreshPeriod = "{{ $longTerm }}"
-	url = "https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/JetBrainsMono/Ligatures/Regular/complete/JetBrains%20Mono%20Regular%20Nerd%20Font%20Complete%20Mono.ttf"
+	url = "https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/JetBrainsMono/Ligatures/Regular/complete/JetBrains%20Mono%20Nerd%20Font%20Complete%20Mono%20Regular.ttf"
 
-["{{ $fontDir }}/JetBrains Mono Regular Nerd Font Complete.ttf"]
+["{{ $fontDir }}/JetBrains Mono Nerd Font Complete Regular.ttf"]
 	type = "file"
 	refreshPeriod = "{{ $longTerm }}"
-	url = "https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/JetBrainsMono/Ligatures/Regular/complete/JetBrains%20Mono%20Regular%20Nerd%20Font%20Complete.ttf"
-
+	url = "https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/JetBrainsMono/Ligatures/Regular/complete/JetBrains%20Mono%20Nerd%20Font%20Complete%20Regular.ttf"

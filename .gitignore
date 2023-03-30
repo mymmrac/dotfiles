@@ -1,2 +1,5 @@
-/.luarc.json
+# IDE
+.idea/
 
+# Lua
+.luarc.json
