@@ -1,0 +1,69 @@
+{{ if eq .osID "linux-arch" -}}
+
+{{ $packages := list
+    "xorg-server"
+    "xorg-xinit"
+    "xorg-xrandr"
+    "xorg-xkill"
+    "xorg-xhost"
+    "mesa"
+    "xf86-video-intel"
+    "nvidia-open"
+    "nvidia-utils"
+    "nvidia-settings"
+    "pipewire"
+    "pipewire-pulse"
+    "pipewire-alsa"
+    "alsa-utils"
+    "pipewire-media-session"
+    "acpi"
+    "acpid"
+    "acpi_call"
+    "lightdm"
+    "lightdm-gtk-greeter"
+    "lightdm-gtk-greeter-settings"
+    "awesome"
+    "picom"
+    "polkit-gnome"
+    "arc-gtk-theme"
+    "lxappearance-gtk3"
+    "xterm"
+    "alacritty"
+    "fish"
+    "starship"
+    "lolcat"
+    "bat"
+    "tmux"
+    "rofi"
+    "go"
+    "lua"
+-}}
+
+#!/bin/bash
+
+# terminus-font ttf-dejavu noto-fonts ttf-liberation ttf-ibm-plex \
+# libinput unclutter man-db make m4 libvncserver libtool libpulse gettext gcc autoconf automake file fakeroot \
+# maim openssh wget xsel zip unzip gzip which tailscale sed playerctl patch light grep gawk findutils cpio compsize bison binutils \
+# neofetch  htop figlet cowsay cmatrix bottom dust jq  \
+# grub-customizer gpicview vlc transmission-gtk telegram-desktop steam remmina qalculate-gtk \
+# obs-studio libreoffice-still jupyterlab firefox flameshot discord evince \
+# virtualbox virtualbox-host-modules-arch \
+# thunar thunar-archive-plugin tumbler file-roller \
+# python python-pip nodejs-lts-fermium jdk11-openjdk \
+# docker docker-compose \
+# network-manager-applet \
+# openssh \
+# bluez bluez-utils cups hplip \
+
+set -eu
+
+echo -e "==== Start: Install Base Packages ====\n"
+
+sudo pacman -Syyu
+sudo pacman -Syu
+
+sudo pacman --needed -S {{ $packages | join " " }}
+
+echo -e "\n==== End: Install Base Packages ===="
+
+{{ end -}}
