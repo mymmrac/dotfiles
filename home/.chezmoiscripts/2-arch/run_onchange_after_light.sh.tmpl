@@ -1,0 +1,14 @@
+{{ if eq .osID "linux-arch" -}}
+
+#!/usr/bin/bash
+
+set -eu
+
+echo -e "==== Start: Light ====\n"
+
+sudo chmod +s /usr/bin/light
+light -S 50
+
+echo -e "\n==== End: Light ===="
+
+{{ end -}}
