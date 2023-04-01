@@ -1,0 +1,29 @@
+{{ if eq .osID "linux-arch" -}}
+
+#!/usr/bin/bash
+
+set -eu
+
+echo -e "==== Start: Lock ====\n"
+
+sudo mkdir -p /etc/systemd/system
+sudo tee /etc/systemd/system/suspend\@.service >/dev/null <<EOM
+[Unit]
+Description=User suspend on LightDM lock screen
+Before=sleep.target
+
+[Service]
+User=%I
+Environment=DISPLAY=:0
+Environment=XDG_SEAT_PATH=/org/freedesktop/DisplayManager/Seat0
+ExecStart=/usr/bin/dm-tool lock
+ExecStartPost=/usr/bin/sleep 1
+
+[Install]
+WantedBy=sleep.target
+EOM
+sudo systemctl enable --now suspend@mymmrac.service
+
+echo -e "\n==== End: Lock ===="
+
+{{ end -}}
