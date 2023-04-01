@@ -1,0 +1,21 @@
+{{ if eq .osID "linux-arch" -}}
+
+#!/usr/bin/bash
+
+set -eu
+
+echo -e "==== Start: Driver ====\n"
+
+sudo gpasswd -a "$USER" adm
+sudo system76-driver-cli
+
+sudo tee -a /etc/modprobe.d/s76-i915-mkinitcpio.conf >/dev/null <<EOM
+# Added by system76-driver (fixed)
+options i915 1
+EOM
+
+sudo mkinitcpio -p linux
+
+echo -e "\n==== End: Driver ===="
+
+{{ end -}}

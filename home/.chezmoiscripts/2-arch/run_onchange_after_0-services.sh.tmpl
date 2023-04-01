@@ -1,0 +1,16 @@
+{{ if eq .osID "linux-arch" -}}
+
+#!/usr/bin/bash
+
+set -eu
+
+echo -e "==== Start: Services ====\n"
+
+sudo systemctl enable --now lightdm.service
+sudo systemctl enable --now system76.service
+sudo systemctl enable --now system76-firmware-daemon.service
+sudo systemctl enable --now com.system76.PowerDaemon.service
+
+echo -e "\n==== End: Services ===="
+
+{{ end -}}
