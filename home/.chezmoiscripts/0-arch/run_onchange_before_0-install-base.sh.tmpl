@@ -6,11 +6,14 @@
     "xorg-xrandr"
     "xorg-xkill"
     "xorg-xhost"
+	"xorg-xinput"
     "mesa"
-    "xf86-video-intel"
-    "nvidia-open"
+	"mesa-utils"
+    "nvidia"
     "nvidia-utils"
     "nvidia-settings"
+	"nvidia-prime"
+	"libinput"
     "pipewire"
     "pipewire-pulse"
     "pipewire-alsa"
@@ -24,7 +27,10 @@
     "lightdm-gtk-greeter-settings"
     "awesome"
     "picom"
+	"unclutter"
+    "polkit"
     "polkit-gnome"
+    "network-manager-applet"
     "arc-gtk-theme"
     "lxappearance-gtk3"
     "xterm"
@@ -32,6 +38,8 @@
     "fish"
     "starship"
     "lolcat"
+    "neofetch"
+    "htop"
     "bat"
     "exa"
     "zoxide"
@@ -47,22 +55,32 @@
     "lua"
     "neovim"
 	"lf"
+	"make"
+	"gcc"
+	"wget"
+	"dust"
+	"lazygit"
+	"jq"
+	"nautilus"
+	"telegram-desktop"
+	"pavucontrol"
+	"firefox"
+	"discord"
+	"evince"
 -}}
 
 #!/bin/bash
 
 # terminus-font ttf-dejavu noto-fonts ttf-liberation ttf-ibm-plex \
-# libinput unclutter man-db make m4 libvncserver libtool libpulse gettext gcc autoconf automake file fakeroot \
-# maim openssh wget xsel zip unzip gzip which tailscale sed playerctl patch light grep gawk findutils cpio compsize bison binutils \
-# neofetch  htop figlet cowsay cmatrix bottom dust jq  \
-# grub-customizer gpicview vlc transmission-gtk telegram-desktop steam remmina qalculate-gtk \
-# obs-studio libreoffice-still jupyterlab firefox flameshot discord evince \
+#    m4 libvncserver libtool libpulse gettext  autoconf automake file fakeroot \
+# maim   xsel zip unzip gzip which tailscale sed playerctl patch light grep gawk findutils cpio compsize bison binutils \
+#    figlet cowsay cmatrix bottom    \
+# grub-customizer gpicview vlc transmission-gtk  steam remmina qalculate-gtk \
+# obs-studio libreoffice-still jupyterlab  flameshot   \
 # virtualbox virtualbox-host-modules-arch \
 # thunar thunar-archive-plugin tumbler file-roller \
 # python python-pip nodejs-lts-fermium jdk11-openjdk \
 # docker docker-compose \
-# network-manager-applet \
-# openssh \
 # bluez bluez-utils cups hplip \
 
 set -eu
