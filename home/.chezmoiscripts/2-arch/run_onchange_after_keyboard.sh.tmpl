@@ -1,0 +1,13 @@
+{{ if eq .osID "linux-arch" -}}
+
+#!/usr/bin/bash
+
+set -eu
+
+echo -e "==== Start: Keyboard ====\n"
+
+localectl set-x11-keymap --no-convert us,ua pc105+inet "" grp:caps_toggle
+
+echo -e "\n==== End: Keyboard ===="
+
+{{ end -}}
