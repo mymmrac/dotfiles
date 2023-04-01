@@ -1,0 +1,24 @@
+{{ if eq .osID "linux-arch" -}}
+
+#!/bin/bash
+
+set -eu
+
+echo -e "==== Start: GRUB Theme ====\n"
+
+pushd /tmp
+
+git clone https://github.com/catppuccin/grub.git
+cd grub
+sudo cp -r src/catppuccin-mocha-grub-theme /usr/share/grub/themes/catppuccin-mocha-grub-theme
+cd ..
+rm -rf grub
+
+popd
+
+sudo sed -i "s/^#GRUB_THEME=.*/GRUB_THEME=\"\/usr\/share\/grub\/themes\/catppuccin-mocha-grub-theme\/theme.txt\"/" /etc/default/grub
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+
+echo -e "\n==== End: GRUB Theme ===="
+
+{{ end -}}
