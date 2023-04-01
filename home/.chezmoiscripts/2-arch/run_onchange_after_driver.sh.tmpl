@@ -9,7 +9,7 @@ echo -e "==== Start: Driver ====\n"
 sudo gpasswd -a "$USER" adm
 sudo system76-driver-cli
 
-sudo tee -a /etc/modprobe.d/s76-i915-mkinitcpio.conf >/dev/null <<EOM
+sudo tee /etc/modprobe.d/s76-i915-mkinitcpio.conf >/dev/null <<EOM
 # Added by system76-driver (fixed)
 options i915 1
 EOM
