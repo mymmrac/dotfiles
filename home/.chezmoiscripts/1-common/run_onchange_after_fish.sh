@@ -2,7 +2,8 @@
 
 echo -e "==== Start: Fish ====\n"
 
-curl -sL "https://raw.githubusercontent.com/jorgebucaran/fisher/HEAD/functions/fisher.fish" | source && fisher install jorgebucaran/fisher
+curl -sL "https://raw.githubusercontent.com/jorgebucaran/fisher/HEAD/functions/fisher.fish" | source \
+  && fisher install jorgebucaran/fisher
 
 fisher install catppuccin/fish
 fish_config theme save "Catppuccin Mocha"
@@ -19,4 +20,3 @@ fish_add_path -U ~/.go/bin
 fish_add_path -U ~/.cargo/bin
 
 echo -e "\n==== End: Fish ==="
-

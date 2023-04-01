@@ -1,3 +1,5 @@
+{{ if eq .osID "linux-arch" -}}
+
 #!/usr/bin/bash
 
 set -eu
@@ -15,3 +17,5 @@ EndSection
 EOM
 
 echo -e "\n==== End: Touchpad Setting ===="
+
+{{ end -}}
