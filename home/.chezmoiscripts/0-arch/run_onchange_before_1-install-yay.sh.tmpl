@@ -1,0 +1,19 @@
+{{ if eq .osID "linux-arch" -}}
+
+#!/bin/bash
+
+set -eu
+
+echo -e "==== Start: Install Yay ====\n"
+
+pushd /tmp
+git clone https://aur.archlinux.org/yay
+cd yay
+makepkg -si
+cd ..
+rm -rf yay
+popd
+
+echo -e "\n==== End: Install Yay ===="
+
+{{ end -}}

@@ -1,0 +1,29 @@
+{{ if eq .osID "linux-arch" -}}
+
+{{ $packages := list
+    "mkinitcpio-firmware"
+    "system76-dkms"
+    "system76-acpi-dkms"
+    "system76-io-dkms"
+    "system76-driver"
+    "system76-power"
+    "system76-firmware"
+    "system76-firmware-daemon"
+    "zoom"
+    "jetbrains-toolbox"
+-}}
+
+#!/bin/bash
+
+set -eu
+
+echo -e "==== Start: Install Base AUR Packages ====\n"
+
+yay -Syyu
+yay -Syu
+
+yay --needed -S {{ $packages | join " " }}
+
+echo -e "\n==== End: Install Base AUR Packages ===="
+
+{{ end -}}
