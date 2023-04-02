@@ -1,0 +1,22 @@
+{{ if eq .osID "linux-arch" -}}
+
+{{ $packagesGo := list
+    "github.com/go-task/task/v3/cmd/task@latest"
+-}}
+
+#!/bin/bash
+
+set -eu
+
+echo -e "==== Start: Install Go ====\n"
+
+mkdir -p "{{ .chezmoi.homeDir }}/.go"
+export GOPATH="{{ .chezmoi.homeDir }}/.go"
+
+{{ range $package := $packagesGo -}}
+	go install {{ $package }}
+{{ end -}}
+
+echo -e "\n==== End: Install Go ===="
+
+{{ end -}}
