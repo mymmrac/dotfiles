@@ -14,6 +14,7 @@ fish_update_completions
 mkdir -p ~/.go
 set -Ux GOPATH ~/.go
 set -Ux EDITOR nvim
+set -Ux GTK_THEME Catppuccin-Mocha-Standard-Teal-Dark
 
 fish_add_path -U ~/.local/bin
 fish_add_path -U ~/.go/bin
