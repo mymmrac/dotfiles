@@ -6,10 +6,11 @@ configuration{
     location: 0;
     disable-history: false;
     hide-scrollbar: true;
-    display-drun: "   Apps ";
+    display-drun: " 󰀘  Apps ";
     display-run: "   Run ";
-    display-window: " 﩯  Window ";
-    display-Network: " 󰤨  Network ";
+    display-window: " 󰕰  Windows ";
+    display-power-menu: "   Power Menu ";
+    display-network: " 󰤨  Network ";
     sidebar-mode: true;
 }
 

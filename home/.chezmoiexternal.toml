@@ -18,7 +18,7 @@
 [".config/btop/themes/catppuccin_mocha.theme"]
 	type = "file"
 	refreshPeriod = "{{ $longTerm }}"
-	url = "https://raw.githubusercontent.com/catppuccin/btop/main/catppuccin_mocha.theme"
+	url = "https://raw.githubusercontent.com/catppuccin/btop/main/themes/catppuccin_mocha.theme"
 
 [".icons/Catppuccin-Mocha-Dark-Cursors"]
 	type = "archive"
@@ -60,12 +60,12 @@
 
 {{- $fontDir := ".local/share/fonts" }}
 
-["{{ $fontDir }}/JetBrains Mono Nerd Font Complete Mono Regular.ttf"]
+["{{ $fontDir }}/JetBrainsMonoNerdFontMono-Regular.ttf"]
 	type = "file"
 	refreshPeriod = "{{ $longTerm }}"
-	url = "https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/JetBrainsMono/Ligatures/Regular/complete/JetBrains%20Mono%20Nerd%20Font%20Complete%20Mono%20Regular.ttf"
+	url = "https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/JetBrainsMono/Ligatures/Regular/JetBrainsMonoNerdFontMono-Regular.ttf"
 
-["{{ $fontDir }}/JetBrains Mono Nerd Font Complete Regular.ttf"]
+["{{ $fontDir }}/JetBrainsMonoNerdFont-Regular.ttf"]
 	type = "file"
 	refreshPeriod = "{{ $longTerm }}"
-	url = "https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/JetBrainsMono/Ligatures/Regular/complete/JetBrains%20Mono%20Nerd%20Font%20Complete%20Regular.ttf"
+	url = "https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/JetBrainsMono/Ligatures/Regular/JetBrainsMonoNerdFont-Regular.ttf"
