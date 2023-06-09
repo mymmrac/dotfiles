@@ -10,6 +10,7 @@ localectl set-x11-keymap --no-convert us,ua pc105+inet "" grp:caps_toggle
 
 sudo chown "$USER:" /sys/class/leds/system76_acpi::kbd_backlight/color
 sudo chown "$USER:" /sys/class/leds/system76_acpi::kbd_backlight/brightness
+sys76-kb set --color aqua --brightness 0
 
 echo -e "\n==== End: Keyboard ===="
 
