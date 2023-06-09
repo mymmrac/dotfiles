@@ -2,12 +2,15 @@
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
 pcall(require, "luarocks.loader")
 
+-- Standard
+local io = { open = io.open }
+
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
 require("awful.autofocus")
 -- Widget and layout library
-local wibox = require("wibox")
+--local wibox = require("wibox")
 -- Theme handling library
 local beautiful = require("beautiful")
 -- Notification library
@@ -141,7 +144,64 @@ run_once({
     "system76-power profile performance",
     "sys76-kb set --color aqua --brightness 0"
 })
---- }}}
+-- }}}
+
+-- {{{ Low battery notification
+local function read_first_line(path)
+    local file, first_line = io.open(path, "rb"), ""
+    if file then
+        first_line = file:read("*l")
+        file:close()
+    end
+    return first_line
+end
+
+local lastBrightness = -1
+local lowBatteryNotification = { id = -1 }
+
+gears.timer {
+    timeout = 10,
+    call_now = true,
+    autostart = true,
+    callback = function()
+        local battery_charge = tonumber(read_first_line("/sys/class/power_supply/BAT0/capacity"))
+        local battery_status = read_first_line("/sys/class/power_supply/BAT0/status")
+
+        if battery_charge <= 15 and battery_status ~= "Charging" then
+            local notify = naughty.notify({
+                text = "Low battery " .. battery_charge .. "%",
+                timeout = 0,
+                height = 24,
+                position = "top_right",
+                ontop = true,
+                fg = "#FFFFFF",
+                bg = "#ED2B2A",
+                replaces_id = lowBatteryNotification.id > 0 and lowBatteryNotification.id or nil
+            })
+            lowBatteryNotification = notify
+
+            if lastBrightness <= 0 then
+                awful.spawn.easy_async("light -G", function(stdout)
+                    lastBrightness = math.floor(tonumber(stdout))
+                    if lastBrightness > 20 then
+                        awful.spawn("light -S 20")
+                    end
+                end)
+            end
+        else
+            if lowBatteryNotification.id > 0 then
+                naughty.destroy(lowBatteryNotification)
+                lowBatteryNotification.id = -1
+            end
+
+            if lastBrightness > 0 then
+                awful.spawn("light -S " .. lastBrightness)
+                lastBrightness = -1
+            end
+        end
+    end
+}
+-- }}}
 
 -- {{{ Mouse bindings on desktop
 root.buttons(gears.table.join(
