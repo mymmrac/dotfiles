@@ -137,7 +137,9 @@ run_once({
     "polybar",
     "unclutter",
     "nm-applet",
-    "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
+    "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1",
+    "system76-power profile performance",
+    "sys76-kb set --color aqua --brightness 0"
 })
 --- }}}
 

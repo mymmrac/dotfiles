@@ -8,6 +8,9 @@ echo -e "==== Start: Keyboard ====\n"
 
 localectl set-x11-keymap --no-convert us,ua pc105+inet "" grp:caps_toggle
 
+sudo chown "$USER:" /sys/class/leds/system76_acpi::kbd_backlight/color
+sudo chown "$USER:" /sys/class/leds/system76_acpi::kbd_backlight/brightness
+
 echo -e "\n==== End: Keyboard ===="
 
 {{ end -}}
