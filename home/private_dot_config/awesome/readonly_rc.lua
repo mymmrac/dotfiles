@@ -19,7 +19,7 @@ local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
-require("awful.hotkeys_popup.keys")
+--require("awful.hotkeys_popup.keys")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -166,10 +166,11 @@ gears.timer {
     callback = function()
         local battery_charge = tonumber(read_first_line("/sys/class/power_supply/BAT0/capacity"))
         local battery_status = read_first_line("/sys/class/power_supply/BAT0/status")
+        local battery_charging = battery_status == "Charging"
 
-        if battery_charge <= 15 and battery_status ~= "Charging" then
+        if battery_charge <= 12 and not battery_charging then
             local notify = naughty.notify({
-                text = "Low battery " .. battery_charge .. "%",
+                text = "Critically low battery " .. battery_charge .. "%",
                 timeout = 0,
                 height = 24,
                 position = "top_right",
@@ -188,6 +189,16 @@ gears.timer {
                     end
                 end)
             end
+        elseif battery_charge <= 20 and not battery_charging then
+            local notify = naughty.notify({
+                text = "Low battery " .. battery_charge .. "%",
+                timeout = 0,
+                height = 24,
+                position = "top_right",
+                ontop = true,
+                replaces_id = lowBatteryNotification.id > 0 and lowBatteryNotification.id or nil
+            })
+            lowBatteryNotification = notify
         else
             if lowBatteryNotification.id > 0 then
                 naughty.destroy(lowBatteryNotification)
@@ -373,6 +384,12 @@ globalkeys = gears.table.join(
             awful.spawn("rofi -show drun")
         end,
                 { description = "show the menubar", group = "launcher" }),
+
+-- Lock screen
+        awful.key({ mod_key, "Shift" }, "l", function()
+            awful.spawn("dm-tool lock")
+        end,
+                { description = "lock screen", group = "system" }),
 
 -- Volume
         awful.key({ }, "XF86AudioLowerVolume", function()
