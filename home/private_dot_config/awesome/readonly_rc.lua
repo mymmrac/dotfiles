@@ -53,6 +53,7 @@ end
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 beautiful.wallpaper = gears.filesystem.get_configuration_dir() .. "image/bg.jpg"
 beautiful.useless_gap = 3
+beautiful.notification_max_height = 128
 
 -- This is used later as the default terminal and editor to run.
 terminal = "alacritty"
@@ -142,7 +143,8 @@ run_once({
     "nm-applet",
     "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1",
     "system76-power profile performance",
-    "sys76-kb set --color aqua --brightness 0"
+    "system76-power charge-thresholds --profile max_lifespan",
+    "sys76-kb set --color aqua --brightness 255 && sleep 1 && sys76-kb set --color aqua --brightness 0"
 })
 -- }}}
 

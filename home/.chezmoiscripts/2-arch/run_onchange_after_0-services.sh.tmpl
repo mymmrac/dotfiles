@@ -6,13 +6,13 @@ set -eu
 
 echo -e "==== Start: Services ====\n"
 
-sudo systemctl enable --now acpid.service
-sudo systemctl enable --now lightdm.service
-sudo systemctl enable --now system76.service
-sudo systemctl enable --now system76-firmware-daemon.service
-sudo systemctl enable --now com.system76.PowerDaemon.service
-sudo systemctl enable --now docker.service
-sudo systemctl enable --now systemd-resolved.service
+sudo systemctl enable acpid.service
+sudo systemctl enable lightdm.service
+sudo systemctl enable system76.service
+sudo systemctl enable system76-firmware-daemon.service
+sudo systemctl enable com.system76.PowerDaemon.service
+sudo systemctl enable docker.service
+sudo systemctl enable systemd-resolved.service
 
 echo -e "\n==== End: Services ===="
 

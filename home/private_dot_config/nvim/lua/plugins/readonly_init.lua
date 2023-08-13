@@ -116,7 +116,8 @@ vim.cmd [[colorscheme catppuccin]]
 
 require("Comment").setup()
 
-require("bufferline").setup()
+-- Setup is automatic
+-- require("barbar").setup()
 
 -- Add additional capabilities supported by nvim-cmp
 -- local capabilities = require("cmp_nvim_lsp").default_capabilities()
