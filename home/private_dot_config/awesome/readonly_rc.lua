@@ -318,6 +318,10 @@ globalkeys = gears.table.join(
                 { description = "reload awesome", group = "awesome" }),
         awful.key({ mod_key, "Shift" }, "q", awesome.quit,
                 { description = "quit awesome", group = "awesome" }),
+        awful.key({ }, "Print", function()
+            awful.spawn("flameshot gui")
+        end,
+                { description = "open a terminal", group = "launcher" }),
 
         awful.key({ mod_key, }, "l", function()
             awful.tag.incmwfact(0.05)
