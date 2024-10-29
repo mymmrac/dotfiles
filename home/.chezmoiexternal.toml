@@ -5,15 +5,21 @@
 
 # Catppuccin Theme
 
-[".config/alacritty/catppuccin/catppuccin-mocha.yml"]
+# [".config/alacritty/catppuccin/catppuccin-mocha.yml"]
+# 	type = "file"
+# 	refreshPeriod = "{{ $longTerm }}"
+#	url = "https://raw.githubusercontent.com/catppuccin/alacritty/main/catppuccin-mocha.yml"
+
+[".config/alacritty/catppuccin/catppuccin-mocha.toml"]
 	type = "file"
 	refreshPeriod = "{{ $longTerm }}"
-	url = "https://raw.githubusercontent.com/catppuccin/alacritty/main/catppuccin-mocha.yml"
+	url = "https://raw.githubusercontent.com/catppuccin/alacritty/main/catppuccin-mocha.toml"
 
 [".config/bat/themes/Catppuccin-mocha.tmTheme"]
 	type = "file"
 	refreshPeriod = "{{ $longTerm }}"
-	url = "https://raw.githubusercontent.com/catppuccin/bat/main/Catppuccin-mocha.tmTheme"
+	url = "https://raw.githubusercontent.com/catppuccin/bat/main/themes/Catppuccin Mocha.tmTheme"
+	# url = "https://raw.githubusercontent.com/catppuccin/bat/main/Catppuccin-mocha.tmTheme"
 
 [".config/btop/themes/catppuccin_mocha.theme"]
 	type = "file"
@@ -24,7 +30,8 @@
 	type = "archive"
 	refreshPeriod = "{{ $longTerm }}"
 	stripComponents = 1
-	url = "https://raw.githubusercontent.com/catppuccin/cursors/main/cursors/Catppuccin-Mocha-Dark-Cursors.zip"
+	url = "https://github.com/catppuccin/cursors/releases/download/v0.3.0/catppuccin-mocha-dark-cursors.zip"
+#	url = "https://raw.githubusercontent.com/catppuccin/cursors/main/cursors/Catppuccin-Mocha-Dark-Cursors.zip"
 
 # TODO: Check why does not work
 # [".themes/Catppuccin-Mocha-Green"]

@@ -5,7 +5,7 @@ require("packer").startup(function(use)
 
 	-- Telescope and related plugins
 	use {
-		"nvim-telescope/telescope.nvim", tag = "0.1.0",
+		"nvim-telescope/telescope.nvim", tag = "0.1.8",
 		requires = { { "nvim-lua/plenary.nvim" } }
 	}
 	use "nvim-telescope/telescope-file-browser.nvim"
