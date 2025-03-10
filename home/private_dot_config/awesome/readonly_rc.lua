@@ -144,7 +144,7 @@ run_once({
     "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1",
     "system76-power profile performance",
     "system76-power charge-thresholds --profile max_lifespan",
-    "sys76-kb set --color aqua --brightness 255 && sleep 1 && sys76-kb set --color aqua --brightness 0"
+	"xset s off -dpms",
 })
 -- }}}
 
