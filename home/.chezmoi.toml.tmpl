@@ -14,4 +14,15 @@
 [edit]
 	command = "nvim"
 
-# TODO: Add merge config
+[diff]
+    pager = "delta"
+
+[merge]
+    command = "nvim"
+    args = [
+        "-d",
+        {{ printf "%q" "{{ .Destination }}" }},
+        {{ printf "%q" "{{ .Source }}" }},
+        {{ printf "%q" "{{ .Target }}" }},
+    ]
+
